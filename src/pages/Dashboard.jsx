@@ -15,7 +15,7 @@ const Dashboard = () => {
   useEffect(() => {
     
     const fetchData = async () => {
-      const response = await fetch('http://localhost:5000/devices');
+      const response = await fetch('https://task-backend-wct7.onrender.com/devices');
       const result = await response.json();
       setData(result);
     };
@@ -23,7 +23,7 @@ const Dashboard = () => {
 
     
     const fetchDeviceLocations = async () => {
-      const response = await fetch('http://localhost:5000/device-locations');
+      const response = await fetch('https://task-backend-wct7.onrender.com/device-locations');
       const result = await response.json();
       setDeviceLocations(result);
     };
