@@ -29,4 +29,26 @@ Features
 - React Router: For managing navigation between pages.
 - Tailwind CSS: For styling the application and ensuring responsiveness.
 - Vite: For fast and efficient development.
-- leaflet: For location-based data and real-time tracking.
+- leaflet: For location-based data and real-time tracking.   
+
+
+
+To create a new React app using Vite, run the following command:
+
+```bash
+npm init vite@latest . -- --template react
+```
+Replace my-app with your preferred project name.<br>
+Navigate to your project directory:
+
+Install Dependencies
+Navigate to the root directory of your project.<br>
+Install necessary dependencies:
+```bash
+npm install
+```
+
+
+```bash
+npm run dev 
+```
