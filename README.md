@@ -38,7 +38,7 @@ To create a new React app using Vite, run the following command:
 ```bash
 npm create vite@latest . -- --template react
 ```
-Replace my-app with your preferred project name.<br>
+<br>
 Navigate to your project directory:
 
 Install Dependencies
