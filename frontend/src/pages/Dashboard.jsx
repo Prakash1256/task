@@ -31,12 +31,6 @@ const Dashboard = () => {
 
     fetchData();
   }, []);
-
-<<<<<<< HEAD
-  // Fetch device locations
-=======
-
->>>>>>> b7be5c6c368f3cc8e7703689e769ab46fcf2c08d
   const fetchDeviceLocations = async () => {
     try {
       setLoadingLocations(true);
@@ -53,14 +47,11 @@ const Dashboard = () => {
   };
 
   useEffect(() => {
-<<<<<<< HEAD
+
     fetchDeviceLocations();
-=======
     
     fetchDeviceLocations();
 
-    
->>>>>>> b7be5c6c368f3cc8e7703689e769ab46fcf2c08d
     const interval = setInterval(() => {
       fetchDeviceLocations();
     }, 5000);
@@ -68,19 +59,16 @@ const Dashboard = () => {
     return () => clearInterval(interval);
   }, []);
 
-<<<<<<< HEAD
-  const center = [40.7128, -74.0060]; // New York City coordinates
 
-  // Custom Icon using Leaflet's built-in icon style
-  const customIcon = new L.Icon({
-    iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png', // Default Leaflet icon
-    iconSize: [25, 41], // Size of the icon
-    iconAnchor: [12, 41], // Anchor point of the icon
-    popupAnchor: [0, -41], // Position of the popup relative to the icon
-  });
-=======
   const center = [40.7128, -74.0060]; 
->>>>>>> b7be5c6c368f3cc8e7703689e769ab46fcf2c08d
+  const customIcon = new L.Icon({
+    iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png', 
+    iconSize: [25, 41], 
+    iconAnchor: [12, 41], 
+    popupAnchor: [0, -41], 
+  });
+  const center = [40.7128, -74.0060]; 
+
 
   return (
     <div className="min-h-screen bg-cyan-100 p-4">
