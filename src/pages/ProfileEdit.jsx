@@ -3,9 +3,11 @@ import React, { useState } from 'react';
 const ProfileEdit = () => {
   const [organization, setOrganization] = useState('My Organization');
   const [location, setLocation] = useState('New York, USA');
+  const [showToast, setShowToast] = useState(false);
 
   const handleSave = () => {
-    alert('Profile updated successfully!');
+    setShowToast(true);
+    setTimeout(() => setShowToast(false), 3000); 
   };
 
   return (
@@ -38,6 +40,11 @@ const ProfileEdit = () => {
           Save
         </button>
       </form>
+      {showToast && (
+        <div className="fixed top-4 left-1/2 transform -translate-x-1/2 p-4 bg-green-500 text-white rounded shadow-lg">
+          <p className="text-sm font-medium">Profile updated successfully!</p>
+        </div>
+      )}
     </div>
   );
 };

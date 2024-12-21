@@ -3,10 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 
-// Make sure to import the Leaflet CSS
 import 'leaflet/dist/leaflet.css';
 
-// Set the position of the map and tile URL
+
 const Dashboard = () => {
   const [data, setData] = useState([]);
   const [deviceLocations, setDeviceLocations] = useState([]);
@@ -14,7 +13,7 @@ const Dashboard = () => {
 
   
   useEffect(() => {
-    // Fetch device data from the API
+    
     const fetchData = async () => {
       const response = await fetch('http://localhost:5000/devices');
       const result = await response.json();
@@ -22,7 +21,7 @@ const Dashboard = () => {
     };
     fetchData();
 
-    // Fetch real-time device location data from the API
+    
     const fetchDeviceLocations = async () => {
       const response = await fetch('http://localhost:5000/device-locations');
       const result = await response.json();
@@ -30,22 +29,20 @@ const Dashboard = () => {
     };
     fetchDeviceLocations();
 
-    // Update device locations every 5 seconds
+
     const interval = setInterval(() => {
       fetchDeviceLocations();
-    }, 5000);  // Adjust the interval as needed
+    }, 5000);  
 
     return () => clearInterval(interval);
   }, []);
 
-  // Map center position (Default to New York)
-  const center = [40.7128, -74.0060];  // Default center (New York)
+  
+  const center = [40.7128, -74.0060];
 
   return (
     <div className="min-h-screen bg-cyan-100 p-4">
       <h1 className="text-2xl font-bold mb-6">Dashboard</h1>
-
-      {/* Device Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {data.map((item, index) => (
           <div key={index} className="bg-white p-4 rounded shadow-md">
@@ -57,8 +54,6 @@ const Dashboard = () => {
           </div>
         ))}
       </div>
-
-      {/* Leaflet Map */}
       <MapContainer
         center={center}
         zoom={10}
@@ -71,7 +66,7 @@ const Dashboard = () => {
           <Marker
             key={index}
             position={[location.lat, location.lng]}
-            icon={new L.Icon.Default()}  // Use the default Leaflet icon
+            icon={new L.Icon.Default()}
           >
             <Popup>{location.name}</Popup>
           </Marker>
