@@ -22,6 +22,7 @@ const Dashboard = () => {
     fetchData();
 
     
+    
     const fetchDeviceLocations = async () => {
       const response = await fetch('https://backend-task-iwp6.onrender.com/device-locations');
       const result = await response.json();
