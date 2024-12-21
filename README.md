@@ -1,5 +1,5 @@
-Frontend Task Management Application
- # This is a professional and responsive React application built using React Router, Tailwind CSS, and Vite. It features a login page, a dashboard, and a profile edit page with state management, validation, and real-time location tracking on a map.
+# Frontend Task Management Application
+  This is a professional and responsive React application built using React Router, Tailwind CSS, and Vite. It features a login page, a dashboard, and a profile edit page with state management, validation, and real-time location tracking on a map.
 
 Features
  # Login Page:
