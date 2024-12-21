@@ -12,6 +12,7 @@ const Dashboard = () => {
   const [deviceLocations, setDeviceLocations] = useState([]);
   const navigate = useNavigate();
 
+  
   useEffect(() => {
     // Fetch device data from the API
     const fetchData = async () => {
