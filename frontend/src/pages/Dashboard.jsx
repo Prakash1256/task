@@ -12,7 +12,7 @@ const Dashboard = () => {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  // Fetch device data
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -32,7 +32,7 @@ const Dashboard = () => {
     fetchData();
   }, []);
 
-  // Fetch device locations (manual or periodic)
+
   const fetchDeviceLocations = async () => {
     try {
       setLoadingLocations(true);
@@ -49,10 +49,10 @@ const Dashboard = () => {
   };
 
   useEffect(() => {
-    // Initial fetch for device locations
+    
     fetchDeviceLocations();
 
-    // Periodic updates every 5 seconds
+    
     const interval = setInterval(() => {
       fetchDeviceLocations();
     }, 5000);
@@ -60,7 +60,7 @@ const Dashboard = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const center = [40.7128, -74.0060]; // Default center for the map
+  const center = [40.7128, -74.0060]; 
 
   return (
     <div className="min-h-screen bg-cyan-100 p-4">
