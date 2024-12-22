@@ -17,8 +17,8 @@ const devices = [
 
 
 const deviceLocations = [
-  { deviceId: '12345', lat: 26.8467, lng: 80.9462, name: 'Device A' }, 
-  { deviceId: '67890', lat: 28.4595, lng: 77.0266, name: 'Device B' }, 
+  { deviceId: '12345', lat: 40.7128, lng: -74.0060, name: 'Device A' },
+  { deviceId: '67890', lat: 40.730610, lng: -73.935242, name: 'Device B' },
 ];
 
 
