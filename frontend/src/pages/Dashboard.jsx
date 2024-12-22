@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+import { FaPen } from 'react-icons/fa';  // Importing pen icon for editing
 
 const Dashboard = () => {
   const [data, setData] = useState([]);
@@ -10,6 +11,7 @@ const Dashboard = () => {
   const [loadingData, setLoadingData] = useState(true);
   const [loadingLocations, setLoadingLocations] = useState(false);
   const [error, setError] = useState(null);
+  const [successMessage, setSuccessMessage] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -51,16 +53,64 @@ const Dashboard = () => {
 
   useEffect(() => {
     fetchDeviceLocations();
-    const interval = setInterval(fetchDeviceLocations, 60000); // Fetch every 60 seconds
-    return () => clearInterval(interval); // Cleanup interval on unmount
+    const interval = setInterval(fetchDeviceLocations, 60000); 
+    return () => clearInterval(interval); 
   }, []);
 
-  const center = [40.7128, -74.0060]; // Center of the map (New York City)
+  const center = [40.7128, -74.0060]; 
+
+  const dummyData = [
+    {
+      name: 'Device A',
+      deviceId: 'A123',
+      output: 'Online',
+      type: 'Sensor',
+      updated: '2024-12-22T12:00:00Z',
+    },
+    {
+      name: 'Device B',
+      deviceId: 'B456',
+      output: 'Offline',
+      type: 'Actuator',
+      updated: '2024-12-21T10:45:00Z',
+    },
+    {
+      name: 'Device C',
+      deviceId: 'C789',
+      output: 'Online',
+      type: 'Controller',
+      updated: '2024-12-20T16:30:00Z',
+    },
+  ];
+
+  const handleEdit = async (deviceId) => {
+    try {
+      // Mock PUT request to edit device
+      const response = await fetch(`https://backend-task-iwp6.onrender.com/devices/${deviceId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: `Updated Device ${deviceId}`,
+          output: 'Updated',
+        }),
+      });
+      navigate("/profile-edit");
+      if (!response.ok) throw new Error('Failed to update device');
+      const updatedDevice = await response.json();
+      setSuccessMessage(`Device ${updatedDevice.deviceId} updated successfully.`);
+    } catch (err) {
+      console.error('Error editing device:', err);
+      setError('Failed to update device.');
+    }
+  };
 
   return (
     <div className="min-h-screen bg-cyan-100 p-4">
       <h1 className="text-2xl font-bold mb-6">Dashboard</h1>
       {error && <p className="text-red-500 mb-4">{error}</p>}
+      {successMessage && <p className="text-green-500 mb-4">{successMessage}</p>}
       {loadingData && loadingLocations ? (
         <p>Loading device data...</p>
       ) : (
@@ -72,10 +122,53 @@ const Dashboard = () => {
               <p>Status: {item.output}</p>
               <p>Type: {item.type}</p>
               <p>Last Updated: {item.updated}</p>
+              <button
+                onClick={() => handleEdit(item.deviceId)}
+                className="text-blue-500 hover:text-blue-700 mt-2 flex items-center"
+              >
+                <FaPen className="mr-2" /> Edit
+              </button>
             </div>
           ))}
         </div>
       )}
+
+      {/* Table with Dummy Data */}
+      <div className="mt-6">
+        <h2 className="text-xl font-semibold mb-4">Device Table</h2>
+        <table className="table-auto w-full border-collapse border border-gray-200">
+          <thead>
+            <tr className="bg-gray-100">
+              <th className="border border-gray-200 px-4 py-2">Name</th>
+              <th className="border border-gray-200 px-4 py-2">Device ID</th>
+              <th className="border border-gray-200 px-4 py-2">Main Output</th>
+              <th className="border border-gray-200 px-4 py-2">Hardware Type</th>
+              <th className="border border-gray-200 px-4 py-2">Last Updated</th>
+              <th className="border border-gray-200 px-4 py-2">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {dummyData.map((item, index) => (
+              <tr key={index} className="text-center">
+                <td className="border border-gray-200 px-4 py-2">{item.name}</td>
+                <td className="border border-gray-200 px-4 py-2">{item.deviceId}</td>
+                <td className="border border-gray-200 px-4 py-2">{item.output}</td>
+                <td className="border border-gray-200 px-4 py-2">{item.type}</td>
+                <td className="border border-gray-200 px-4 py-2">{item.updated}</td>
+                <td className="border border-gray-200 px-4 py-2">
+                  <button
+                    onClick={() => handleEdit(item.deviceId)}
+                    className="text-blue-500 hover:text-blue-700"
+                  >
+                    <FaPen />
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
       <div className="mt-6">
         <h2 className="text-xl font-semibold mb-4">Device Locations</h2>
         <MapContainer center={center} zoom={10} style={{ width: '100%', height: '400px' }}>
@@ -91,12 +184,6 @@ const Dashboard = () => {
           ))}
         </MapContainer>
       </div>
-      <button
-        onClick={() => navigate('/profile-edit')}
-        className="mt-4 bg-cyan-500 text-white px-4 py-2 rounded hover:bg-cyan-600 transition"
-      >
-        Edit Profile
-      </button>
     </div>
   );
 };
