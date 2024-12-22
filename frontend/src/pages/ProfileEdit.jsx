@@ -7,31 +7,17 @@ const ProfileEdit = () => {
   const [showToast, setShowToast] = useState(false);
   const navigate = useNavigate();
 
-  const handleSave = async () => {
-    try {
-      // Mocked PUT request
-      await new Promise((resolve) => setTimeout(resolve, 500)); // Simulate network delay
-
-      // Show toast for success
-      setShowToast(true);
-      setTimeout(() => {
-        setShowToast(false);
-        navigate('/dashboard'); // Navigate to dashboard after success
-      }, 1000);
-    } catch (error) {
-      console.error('Error updating profile:', error);
-    }
+  const handleSave = () => {
+    setShowToast(true);
+    setTimeout(() => {
+      setShowToast(false);
+      navigate('/dashboard'); 
+    }, 1000);
   };
 
   return (
     <div className="min-h-screen bg-cyan-100 flex items-center justify-center">
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          handleSave();
-        }}
-        className="p-6 bg-white rounded shadow-md w-full max-w-lg"
-      >
+      <form className="p-6 bg-white rounded shadow-md w-full max-w-lg">
         <h1 className="text-2xl font-bold mb-4">Edit Profile</h1>
         <div className="mb-4">
           <label className="block text-sm font-medium mb-1">Organization Name</label>
@@ -52,7 +38,8 @@ const ProfileEdit = () => {
           />
         </div>
         <button
-          type="submit"
+          type="button"
+          onClick={handleSave}
           className="w-full bg-cyan-500 text-white py-2 rounded hover:bg-cyan-600 transition"
         >
           Save

@@ -13,10 +13,13 @@
 - Form validation to ensure fields are not empty.
 - Redirects to the dashboard upon successful login.
 
+<<<<<<< HEAD
 ## SignUp
 - Form fields for email ,password and confirm password.
 - Form validation to ensure fields are not empty.
 - Redirects to the Login upon successful SignUp.
+=======
+>>>>>>> parent of 0ac3a0f (updated-locations-fixed-issues)
 ## Dashboard:
 
 - Displays a table with dummy data.
