@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import { FaPen } from 'react-icons/fa';  // Importing pen icon for editing
+import { FaPen } from 'react-icons/fa';
 
 const Dashboard = () => {
   const [data, setData] = useState([]);
@@ -134,7 +134,7 @@ const Dashboard = () => {
       )}
 
       {/* Table with Dummy Data */}
-      <div className="mt-6">
+      <div className="mt-6 overflow-x-auto">
         <h2 className="text-xl font-semibold mb-4">Device Table</h2>
         <table className="table-auto w-full border-collapse border border-gray-200">
           <thead>
