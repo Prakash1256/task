@@ -9,12 +9,12 @@
 # Features
  ## Login Page:
 
-- Form fields for email , password and confirm password.
+- Form fields for email and password.
 - Form validation to ensure fields are not empty.
 - Redirects to the dashboard upon successful login.
 
 ## SignUp
-- Form fields for email and password.
+- Form fields for email ,password and confirm password.
 - Form validation to ensure fields are not empty.
 - Redirects to the Login upon successful SignUp.
 ## Dashboard:
