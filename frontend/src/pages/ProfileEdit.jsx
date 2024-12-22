@@ -1,13 +1,18 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const ProfileEdit = () => {
   const [organization, setOrganization] = useState('My Organization');
   const [location, setLocation] = useState('New York, USA');
   const [showToast, setShowToast] = useState(false);
+  const navigate = useNavigate();
 
   const handleSave = () => {
     setShowToast(true);
-    setTimeout(() => setShowToast(false), 3000); 
+    setTimeout(() => {
+      setShowToast(false);
+      navigate('/dashboard'); 
+    }, 1000);
   };
 
   return (

@@ -5,9 +5,11 @@ const app = express();
 const port =  5000;
 
 
-app.use(cors());
+app.use(cors({
+  origin: "*"
+}));
 
-// Mock device data
+
 const devices = [
   { name: 'Device A', deviceId: '12345', output: 'Active', type: 'Type 1', updated: '2024-12-21' },
   { name: 'Device B', deviceId: '67890', output: 'Inactive', type: 'Type 2', updated: '2024-12-20' },
