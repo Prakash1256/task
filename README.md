@@ -13,6 +13,10 @@
 - Form validation to ensure fields are not empty.
 - Redirects to the dashboard upon successful login.
 
+## SignUp
+- Form fields for email and password.
+- Form validation to ensure fields are not empty.
+- Redirects to the Login upon successful SignUp.
 ## Dashboard:
 
 - Displays a table with dummy data.
