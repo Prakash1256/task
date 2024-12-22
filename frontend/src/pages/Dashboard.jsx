@@ -51,11 +51,11 @@ const Dashboard = () => {
 
   useEffect(() => {
     fetchDeviceLocations();
-    const interval = setInterval(fetchDeviceLocations, 60000); // Fetch every 60 seconds
-    return () => clearInterval(interval); // Cleanup interval on unmount
+    const interval = setInterval(fetchDeviceLocations, 60000); 
+    return () => clearInterval(interval); 
   }, []);
 
-  const center = [40.7128, -74.0060]; // Center of the map (New York City)
+  const center = [40.7128, -74.0060];
 
   return (
     <div className="min-h-screen bg-cyan-100 p-4">
